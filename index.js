@@ -5,12 +5,13 @@ const userRouter = require("./routes/user.js")
 const blogRouter = require("./routes/blog.js")
 const Blog = require("./models/blog.js")
 const mongoose = require("mongoose");
+const {returnDbUrl} = require("./pvt/dbUrl.js")
 const cookieParser = require("cookie-parser");
 const {
     checkForAuthenticationCookie,
   } = require("./middlewares/authentication");
 
-mongoose.connect("mongodb://127.0.0.1:27017/blogification").then((e) => console.log("MongoDB Connected"));
+mongoose.connect(returnDbUrl()).then((e) => console.log("MongoDB Connected"));
 
 const app = express();
 const PORT = 8001;
